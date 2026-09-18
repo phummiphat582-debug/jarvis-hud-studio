@@ -137,26 +137,40 @@ export default function TextLauncher({ currentTheme, onThemeChange }) {
               J.A.R.V.I.S. TEXT LAUNCHER &amp; PROFILE
             </h3>
             <p className="text-xs sm:text-sm text-cyan-300/80 font-mono-tech max-w-xl leading-relaxed">
-              ไม่ต้องโหลดไอคอนมานั่งเปลี่ยนทีละอัน! เลือกว่าจะ <strong>(1) ใช้ลอนเชอร์ตัวหนังสือเต็มจอบนเว็บนี้</strong> หรือ <strong>(2) ติดตั้ง Profile เปลี่ยนไอคอนหน้าจอโฮมเป็นตัวหนังสือล้วนทีเดียวในคลิกเดียว</strong>
+              ไม่ต้องโหลดไอคอนมานั่งเปลี่ยนทีละอัน! เลือกว่าจะ <strong>(1) โหลด APK ตั้งเป็นหน้าจอหลัก Android ถาวร</strong> หรือ <strong>(2) ติดตั้ง Profile บน iOS</strong> หรือ <strong>(3) เปิดใช้งานลอนเชอร์ตัวหนังสือบนเว็บนี้ได้ทันที</strong>
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto shrink-0">
+            {/* Android APK Direct Download Button */}
+            <a
+              href="https://github.com/phummiphat582-debug/jarvis-hud-studio/releases/download/v1.0.0/JARVIS-Launcher.apk"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={playClickSound}
+              onMouseEnter={playHoverSound}
+              className="px-4 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-black font-orbitron font-extrabold text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 glow-green cursor-pointer transition-all shadow-lg text-center"
+            >
+              <Smartphone className="w-4 h-4 text-black" />
+              <span>โหลด APK (Android หน้าจอหลักถาวร)</span>
+            </a>
+
+            {/* iOS MobileConfig Profile Button */}
             <button
               onClick={handleInstallAllTextProfile}
               disabled={isExportingProfile}
               onMouseEnter={playHoverSound}
-              className="px-5 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-orbitron font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 glow-cyan cursor-pointer transition-all shadow-lg"
+              className="px-4 py-3 bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-400/80 text-cyan-300 font-orbitron font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 glow-cyan-sm cursor-pointer transition-all shadow-lg"
             >
               {profileSuccess ? (
                 <>
-                  <Check className="w-4 h-4 text-black font-bold" />
-                  <span>โหลดโปรไฟล์สำเร็จ! (เปิดติดตั้งใน Settings)</span>
+                  <Check className="w-4 h-4 text-cyan-400 font-bold" />
+                  <span>โหลดโปรไฟล์ iOS แล้ว!</span>
                 </>
               ) : (
                 <>
-                  <Download className="w-4 h-4 text-black font-bold" />
-                  <span>{isExportingProfile ? 'กำลังสังเคราะห์...' : 'ติดตั้งโปรไฟล์ตัวหนังสือทีเดียว (.mobileconfig)'}</span>
+                  <Download className="w-4 h-4 text-cyan-400 font-bold" />
+                  <span>{isExportingProfile ? 'กำลังสังเคราะห์...' : 'โปรไฟล์ iOS (.mobileconfig)'}</span>
                 </>
               )}
             </button>
