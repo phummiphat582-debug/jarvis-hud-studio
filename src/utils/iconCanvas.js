@@ -248,6 +248,40 @@ export async function renderJarvisIcon(canvas, options = {}) {
       ctx.stroke();
     });
 
+  } else if (frameStyle === 'text-only') {
+    // Minimalist HUD Typography Box
+    const boxW = size * 0.82;
+    const boxH = size * 0.82;
+    const x = (size - boxW) / 2;
+    const y = (size - boxH) / 2;
+
+    // Outer delicate neon border
+    ctx.strokeStyle = themeColor;
+    ctx.lineWidth = size * 0.012;
+    roundRect(ctx, x, y, boxW, boxH, size * 0.12);
+    ctx.stroke();
+
+    // Corner tech tick marks
+    const tickLen = size * 0.08;
+    ctx.lineWidth = size * 0.024;
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineCap = 'square';
+    // top-left
+    ctx.beginPath();
+    ctx.moveTo(x + tickLen, y); ctx.lineTo(x, y); ctx.lineTo(x, y + tickLen);
+    ctx.stroke();
+    // top-right
+    ctx.beginPath();
+    ctx.moveTo(x + boxW - tickLen, y); ctx.lineTo(x + boxW, y); ctx.lineTo(x + boxW, y + tickLen);
+    ctx.stroke();
+    // bottom-right
+    ctx.beginPath();
+    ctx.moveTo(x + boxW - tickLen, y + boxH); ctx.lineTo(x + boxW, y + boxH); ctx.lineTo(x + boxW, y + boxH - tickLen);
+    ctx.stroke();
+    // bottom-left
+    ctx.beginPath();
+    ctx.moveTo(x + tickLen, y + boxH); ctx.lineTo(x, y + boxH); ctx.lineTo(x, y + boxH - tickLen);
+    ctx.stroke();
   } else {
     // 'matrix-bracket' - Squared HUD Target Brackets
     const boxSize = size * 0.72;
@@ -321,11 +355,42 @@ export async function renderJarvisIcon(canvas, options = {}) {
     ctx.restore();
   }
 
-  // 4. Center App Icon / Glyph
+  // 4. Center Content (Glyph or Pure Cyber Typography)
   ctx.save();
   const iconTargetSize = size * 0.32;
 
-  if (svgPathOrImg) {
+  if (frameStyle === 'text-only') {
+    // Pure Typography Centerpiece
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    // Sub-title code
+    ctx.font = `bold ${Math.round(size * 0.042)}px 'Share Tech Mono', monospace`;
+    ctx.fillStyle = secondaryColor;
+    ctx.fillText('// STARK // SYS //', cx, cy - size * 0.16);
+
+    // Huge bold glowing App Name
+    ctx.font = `900 ${Math.round(size * 0.115)}px 'Orbitron', sans-serif`;
+    ctx.fillStyle = '#ffffff';
+    ctx.shadowColor = themeColor;
+    ctx.shadowBlur = 30 * glowIntensity;
+    const mainTxt = (labelText || 'APP').toUpperCase();
+    ctx.fillText(mainTxt, cx, cy);
+
+    // Decorative cyber accent line
+    ctx.strokeStyle = themeColor;
+    ctx.lineWidth = size * 0.008;
+    ctx.beginPath();
+    ctx.moveTo(cx - size * 0.28, cy + size * 0.11);
+    ctx.lineTo(cx + size * 0.28, cy + size * 0.11);
+    ctx.stroke();
+
+    // Bottom tech status
+    ctx.font = `bold ${Math.round(size * 0.038)}px 'Share Tech Mono', monospace`;
+    ctx.fillStyle = themeColor;
+    ctx.fillText('PROTOCOL // ONLINE', cx, cy + size * 0.19);
+
+  } else if (svgPathOrImg) {
     // If an image element or loaded image is passed
     if (svgPathOrImg instanceof HTMLImageElement || svgPathOrImg instanceof Image) {
       ctx.shadowColor = themeColor;
@@ -355,8 +420,8 @@ export async function renderJarvisIcon(canvas, options = {}) {
 
   ctx.restore();
 
-  // 5. Tech Label
-  if (showLabel && labelText) {
+  // 5. Tech Label (Only if not text-only mode)
+  if (frameStyle !== 'text-only' && showLabel && labelText) {
     ctx.save();
     ctx.fillStyle = '#ffffff';
     ctx.shadowColor = themeColor;

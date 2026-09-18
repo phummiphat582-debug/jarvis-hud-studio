@@ -623,6 +623,12 @@ export const HUD_THEMES = [
 
 export const FRAME_STYLES = [
   {
+    id: 'text-only',
+    name: 'Text-Only Minimal HUD',
+    nameTh: 'ตัวหนังสือล้วน มินิมอลไซไฟ (Text Only)',
+    desc: 'ไม่มีรูปไอคอน แสดงเฉพาะตัวหนังสือไซไฟเรืองแสง'
+  },
+  {
     id: 'arc-reactor',
     name: 'Arc Reactor Core',
     nameTh: 'วงแหวนปฏิกรณ์อาร์ก (Arc Core)',

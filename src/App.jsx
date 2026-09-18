@@ -5,6 +5,7 @@ import {
   Terminal, Zap, Radio
 } from 'lucide-react';
 import { HUD_THEMES } from './data/apps';
+import TextLauncher from './components/TextLauncher';
 import IconStudio from './components/IconStudio';
 import WidgetsSuite from './components/WidgetsSuite';
 import DeviceSimulator from './components/DeviceSimulator';
@@ -16,10 +17,9 @@ import {
 
 export default function App() {
   const [currentTheme, setCurrentTheme] = useState(HUD_THEMES[0]); // Default Stark Cyan
-  const [activeTab, setActiveTab] = useState('studio'); // 'studio' | 'widgets' | 'simulator' | 'guide'
+  const [activeTab, setActiveTab] = useState('launcher'); // 'launcher' | 'studio' | 'widgets' | 'simulator' | 'guide'
   const [soundOn, setSoundOn] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [hasInitializedAudio, setHasInitializedAudio] = useState(false);
 
   // Initialize sound on first user interaction
   const handleToggleSound = () => {
@@ -33,7 +33,7 @@ export default function App() {
 
   const handleJarvisGreeting = () => {
     playJarvisBoot();
-    speakJarvis('J.A.R.V.I.S. Protocol Online. Welcome to Stark Industries Interface System.');
+    speakJarvis('J.A.R.V.I.S. Protocol Online. All text-only systems nominal.');
   };
 
   const toggleFullscreen = () => {
@@ -94,7 +94,7 @@ export default function App() {
               </div>
               <div className="text-[11px] font-mono-tech text-cyan-500/90 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-ping"></span>
-                <span>SYSTEM ONLINE // STARK OS MOBILE CORE</span>
+                <span>SYSTEM ONLINE // TEXT HUD &amp; MOBILE CORE</span>
               </div>
             </div>
           </div>
@@ -137,6 +137,23 @@ export default function App() {
 
         {/* Global Navigation Tabs */}
         <div className="max-w-7xl mx-auto mt-3.5 flex items-center gap-2 overflow-x-auto pb-1 font-mono-tech text-xs sm:text-sm">
+          {/* New Featured Text Launcher Tab */}
+          <button
+            onClick={() => { playClickSound(); setActiveTab('launcher'); }}
+            onMouseEnter={playHoverSound}
+            className={`px-4 py-2 rounded-t-lg border-b-2 font-bold cursor-pointer transition-all flex items-center gap-2 whitespace-nowrap ${
+              activeTab === 'launcher'
+                ? 'border-cyan-400 text-white bg-cyan-950/80 text-glow'
+                : 'border-transparent text-cyan-400/70 hover:text-white hover:bg-cyan-950/20'
+            }`}
+          >
+            <Terminal className="w-4 h-4 text-cyan-400" />
+            <span>ลอนเชอร์ตัวหนังสือล้วน (TEXT LAUNCHER)</span>
+            <span className="px-1.5 py-0.2 bg-cyan-500 text-black text-[10px] font-extrabold rounded-full animate-pulse">
+              1-CLICK
+            </span>
+          </button>
+
           <button
             onClick={() => { playClickSound(); setActiveTab('studio'); }}
             onMouseEnter={playHoverSound}
@@ -147,7 +164,7 @@ export default function App() {
             }`}
           >
             <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span>1. สตูดิโอเปลี่ยนไอคอน (ICON STUDIO)</span>
+            <span>สตูดิโอเปลี่ยนไอคอน (ICON STUDIO)</span>
           </button>
 
           <button
@@ -160,7 +177,7 @@ export default function App() {
             }`}
           >
             <Clock className="w-4 h-4 text-cyan-400" />
-            <span>2. วิดเจ็ตไฮเทค (TELEMETRY WIDGETS)</span>
+            <span>วิดเจ็ตไฮเทค (TELEMETRY WIDGETS)</span>
           </button>
 
           <button
@@ -173,7 +190,7 @@ export default function App() {
             }`}
           >
             <Smartphone className="w-4 h-4 text-cyan-400" />
-            <span>3. จำลองหน้าจอ &amp; ภาพพื้นหลัง (DEVICE PREVIEW)</span>
+            <span>จำลองหน้าจอ &amp; ภาพพื้นหลัง (DEVICE PREVIEW)</span>
           </button>
 
           <button
@@ -186,13 +203,20 @@ export default function App() {
             }`}
           >
             <HelpCircle className="w-4 h-4 text-cyan-400" />
-            <span>4. วิธีติดตั้งบนมือถือ (INSTALL GUIDE)</span>
+            <span>คู่มือติดตั้ง (GUIDE)</span>
           </button>
         </div>
       </header>
 
       {/* Main Content Viewport */}
       <main className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-8 py-6 flex-1">
+        {activeTab === 'launcher' && (
+          <TextLauncher
+            currentTheme={currentTheme}
+            onThemeChange={setCurrentTheme}
+          />
+        )}
+
         {activeTab === 'studio' && (
           <IconStudio
             currentTheme={currentTheme}
@@ -227,7 +251,7 @@ export default function App() {
           </div>
 
           <div className="text-[11px] text-cyan-400/60">
-            สร้างขึ้นเพื่อเปลี่ยนมือถือและแท็บเล็ตของคุณให้กลายเป็นระบบอัจฉริยะไซไฟ
+            TEXT-ONLY MINIMALIST LAUNCHER &amp; ONE-CLICK MOBILECONFIG
           </div>
 
           <div className="text-[10px] text-cyan-600">
