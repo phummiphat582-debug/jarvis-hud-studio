@@ -144,9 +144,8 @@ export default function TextLauncher({ currentTheme, onThemeChange }) {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto shrink-0">
             {/* Android APK Direct Download Button */}
             <a
-              href="https://github.com/phummiphat582-debug/jarvis-hud-studio/releases/download/v1.0.0/JARVIS-Launcher.apk"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="./JARVIS-Launcher.apk"
+              download="JARVIS-Launcher.apk"
               onClick={playClickSound}
               onMouseEnter={playHoverSound}
               className="px-4 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-black font-orbitron font-extrabold text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 glow-green cursor-pointer transition-all shadow-lg text-center"
