@@ -1,0 +1,17 @@
+{
+  "name": "J.A.R.V.I.S. Text Launcher",
+  "short_name": "JARVIS HUD",
+  "description": "Stark Industries J.A.R.V.I.S. Minimal Text Launcher for Mobile & Tablet",
+  "start_url": "/jarvis-hud-studio/",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#030712",
+  "icons": [
+    {
+      "src": "/jarvis-hud-studio/arc-reactor.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

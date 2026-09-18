@@ -286,17 +286,38 @@ export default function TextLauncher({ currentTheme, onThemeChange }) {
           </div>
         </div>
 
-        {/* Tip on how to use as Home Screen */}
-        <div className="p-4 rounded-xl bg-cyan-950/30 border border-cyan-800/40 font-mono-tech text-xs text-cyan-300 space-y-1.5">
-          <div className="font-bold text-white flex items-center gap-2">
-            <Smartphone className="w-4 h-4 text-cyan-400" />
-            <span>วิธีใช้หน้านี้เป็นหน้าจอหลัก (Home Screen) โดยไม่ต้องโหลดไอคอน:</span>
+        {/* Tip on how to use as Home Screen for Android & iOS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 rounded-xl bg-cyan-950/40 border border-cyan-500/40 font-mono-tech text-xs text-cyan-300 space-y-2">
+            <div className="font-bold text-white flex items-center gap-2 text-sm">
+              <Smartphone className="w-4 h-4 text-green-400" />
+              <span>🤖 สำหรับ Android (แอนดรอยด์):</span>
+            </div>
+            <ul className="list-disc pl-4 space-y-1.5 text-[11px] text-cyan-300/90 leading-relaxed">
+              <li>
+                <strong>วิธีที่ 1 (1 คลิก ผ่านเว็บนี้):</strong> แตะจุด 3 จุด (⋮) มุมบนขวาใน Google Chrome &gt; เลือก <strong>&ldquo;ติดตั้งแอป&rdquo; (Install App)</strong> หรือ <strong>&ldquo;เพิ่มลงในหน้าจอหลัก&rdquo; (Add to Home screen)</strong> &gt; หน้าจอจะเปิดเป็นลอนเชอร์ตัวหนังสือไซไฟเต็มจอทันที!
+              </li>
+              <li>
+                <strong>วิธีที่ 2 (เปลี่ยนทั้งระบบเครื่อง):</strong> โหลดแอพฟรีชื่อ <strong>Olauncher</strong> หรือ <strong>Niagara Launcher</strong> จาก Google Play Store ตั้งเป็นหน้าจอหลัก ปุ๊บ ทั้งเครื่องจะกลายเป็นตัวหนังสือล้วน คลีนสุดๆ ไม่มีไอคอนเลยแม้แต่อันเดียว
+              </li>
+            </ul>
           </div>
-          <p className="text-[11px] text-cyan-300/80 leading-relaxed">
-            กดปุ่ม <strong>แชร์ใน Safari (บน iPhone/iPad)</strong> หรือ <strong>จุดสามจุดใน Chrome (บน Android)</strong> &gt; เลือก <strong>"เพิ่มไปยังหน้าจอโฮม" (Add to Home Screen)</strong> จากนั้นเมื่อแตะไอคอน J.A.R.V.I.S. บนหน้าจอโฮมของคุณ จะเปิดหน้านี้แบบเต็มจอทันที โดยมีเฉพาะตัวหนังสือไฮเทคให้กดเปิดแอพได้รวดเร็วที่สุดโดยไม่มีไอคอนรูปภาพกวนสายตา!
-          </p>
-        </div>
 
+          <div className="p-4 rounded-xl bg-cyan-950/40 border border-cyan-500/40 font-mono-tech text-xs text-cyan-300 space-y-2">
+            <div className="font-bold text-white flex items-center gap-2 text-sm">
+              <Smartphone className="w-4 h-4 text-cyan-400" />
+              <span>🍎 สำหรับ iPhone &amp; iPad (iOS):</span>
+            </div>
+            <ul className="list-disc pl-4 space-y-1.5 text-[11px] text-cyan-300/90 leading-relaxed">
+              <li>
+                <strong>วิธีที่ 1:</strong> กดปุ่ม <em>&ldquo;ติดตั้งโปรไฟล์ตัวหนังสือทีเดียว (.mobileconfig)&rdquo;</em> ด้านบน แล้วไปกดยืนยันใน Settings &gt; Install ไอคอนทั้งหมดจะกลายเป็นการ์ดตัวหนังสือมินิมอลไซไฟทันที
+              </li>
+              <li>
+                <strong>วิธีที่ 2:</strong> แตะปุ่มแชร์ใน Safari &gt; เลือก <strong>&ldquo;เพิ่มไปยังหน้าจอโฮม&rdquo; (Add to Home Screen)</strong> เพื่อเปิดลอนเชอร์ตัวหนังสือเต็มจอ
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
 
     </div>
